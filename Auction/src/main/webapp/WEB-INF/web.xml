@@ -1,0 +1,146 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>HomeServlet</servlet-name>
+    <servlet-class>Servlets.HomeServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>HomeServlet</servlet-name>
+    <url-pattern></url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AccountHomeServlet</servlet-name>
+    <servlet-class>Servlets.AccountHomeServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>AccountHomeServlet</servlet-name>
+    <url-pattern>/account-home</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>CreateAccountServlet</servlet-name>
+    <servlet-class>Servlets.CreateAccountServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>CreateAccountServlet</servlet-name>
+    <url-pattern>/create-account</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ProfileServlet</servlet-name>
+    <servlet-class>Servlets.ProfileServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ProfileServlet</servlet-name>
+    <url-pattern>/profile</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>Servlets.LogoutServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>LeaderboardServlet</servlet-name>
+    <servlet-class>Servlets.LeaderboardServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>LeaderboardServlet</servlet-name>
+    <url-pattern>/leaderboard</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>WriteReviewServlet</servlet-name>
+    <servlet-class>Servlets.WriteReviewServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>WriteReviewServlet</servlet-name>
+    <url-pattern>/write-review</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AddAuctionServlet</servlet-name>
+    <servlet-class>Servlets.AddAuctionServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddAuctionServlet</servlet-name>
+    <url-pattern>/add-auction</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ActiveAuctionsServlet</servlet-name>
+    <servlet-class>Servlets.ActiveAuctionsServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ActiveAuctionsServlet</servlet-name>
+    <url-pattern>/active-auctions</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AuctionBidServlet</servlet-name>
+    <servlet-class>Servlets.AuctionBidServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AuctionBidServlet</servlet-name>
+    <url-pattern>/auction-bid</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UserAuctionsServlet</servlet-name>
+    <servlet-class>Servlets.UserAuctionsServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UserAuctionsServlet</servlet-name>
+    <url-pattern>/user-auctions</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UserReviewsServlet</servlet-name>
+    <servlet-class>Servlets.UserReviewsServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UserReviewsServlet</servlet-name>
+    <url-pattern>/user-reviews</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AuctionsServlet</servlet-name>
+    <servlet-class>Servlets.AuctionsServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AuctionsServlet</servlet-name>
+    <url-pattern>/auctions</url-pattern>
+  </servlet-mapping>
+
+
+  <listener>
+    <listener-class>Listeners.ContextListener</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>Listeners.SessionListener</listener-class>
+  </listener>
+</web-app>

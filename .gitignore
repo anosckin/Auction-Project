@@ -1,0 +1,6 @@
+target
+*.iml
+*.idea
+target/*
+resources/dbconfig.properties
+dbconfig.properties
