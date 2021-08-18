@@ -52,7 +52,7 @@ public class CreateAccountServlet extends HttpServlet implements GeneralConstant
 
             if (inserted) {
                 request.setAttribute(MESSAGE_STRING, ACCOUNT_CREATED_SUCCESSFULLY);
-                request.getRequestDispatcher("Pages/create-account.jsp").forward(request, response);
+                request.getRequestDispatcher("Pages/home.jsp").forward(request, response);
             } else {
                 request.setAttribute(MESSAGE_STRING, ERROR_REGISTRATION);
                 request.getRequestDispatcher("Pages/create-account.jsp").forward(request, response);
