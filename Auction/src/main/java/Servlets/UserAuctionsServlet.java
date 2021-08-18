@@ -46,18 +46,11 @@ public class UserAuctionsServlet  extends HttpServlet {
         List<Auction> auctions = auctionDAO.getAllAuctions();
         request.setAttribute("auctions", auctions);
 
-        int numWon=0;
         User currentUser = (User)session.getAttribute(CURRENT_USER_STRING);
-        for (Auction auction : auctions){
-            long millis=System.currentTimeMillis();
-            java.sql.Date date=new java.sql.Date(millis);
-            if (auction.getCurrent_bidder_id()!=auction.getSeller_id()
-                    && auction.getEnd_date().compareTo(date)<0
-                    && currentUser.getId() == auction.getCurrent_bidder_id()) {
-                numWon++;
-            }
-        }
-        userDAO.updateAuctionsWon(numWon,currentUser.getId());
+
+        List<Auction> wonAuctions = auctionDAO.getWonAuctions(currentUser.getId());
+
+        userDAO.updateAuctionsWon(wonAuctions.size(),currentUser.getId());
         request.getRequestDispatcher("Pages/user-auctions.jsp").forward(request, response);
     }
 

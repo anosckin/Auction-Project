@@ -41,5 +41,4 @@ public interface BidderAuctionDAO {
      */
     public boolean insertBidderAuction(BidderAuction bidderAuction);
 
-
 }

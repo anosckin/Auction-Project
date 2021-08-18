@@ -115,6 +115,34 @@ public class SqlAuctionDAO implements AuctionDAOInterface {
         return auctionsList;
     }
 
+    @Override
+    public List<Auction> getWonAuctions(int user_id) {
+        List<Auction> auctionsList = new ArrayList<>();
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Auctions;");
+            ResultSet resultSet = stmt.executeQuery();
+
+            while (resultSet.next()) {
+                Auction auction = convertToAuction(resultSet);
+                long millis = System.currentTimeMillis();
+                java.sql.Date date = new java.sql.Date(millis);
+                if (auction.getEnd_date().compareTo(date) < 0){
+                    // auction is done
+                    if (auction.getCurrent_bidder_id()==user_id
+                            && auction.getCurrent_bidder_id() != auction.getSeller_id()){
+                        //user_id won the auction
+                        auctionsList.add(auction);
+                    }
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return auctionsList;
+    }
+
     /**
      * Converts resultSet into Auction object
      * @param resultSet a single row from the User table

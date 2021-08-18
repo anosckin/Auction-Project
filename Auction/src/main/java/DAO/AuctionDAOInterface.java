@@ -1,6 +1,7 @@
 package DAO;
 
 import Models.Auction;
+import Models.BidderAuction;
 import Models.User;
 
 import java.util.List;
@@ -33,4 +34,11 @@ public interface AuctionDAOInterface {
      * @return list of auctions, empty list if there are no auctions
      */
     public List<Auction> getAllAuctions();
+
+    /**
+     * returns a list of auctions that the user_id has won
+     * @param user_id
+     * @return
+     */
+    public List<Auction> getWonAuctions (int user_id);
 }
