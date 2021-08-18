@@ -40,7 +40,12 @@
                     <span class="label-2-blue"> End Date: <%=auction.getEnd_date().toString()%> </span> <br>
                     <span class="score-text">   Item Description: <%=auction.getItem_description()%></span> <br>
                     <span class="label-2-blue"> Current Price: <%=auction.getCurrent_price()%>$ </span> <br>
-                    <span class="score-text"> Minimal Increment: <%=auction.getMin_increment()%>$ </span> <br>
+                    <% if (auction.getSeller_id()==auction.getCurrent_bidder_id()){ %>
+                       <span class="score-text"> Minimal Next Bid:  <%=auction.getCurrent_price()%>$ </span> <br>
+                    <% } %>
+                    <% if (auction.getSeller_id()!=auction.getCurrent_bidder_id()){ %>
+                        <span class="score-text"> Minimal Next Bid:  <%=auction.getCurrent_price()+auction.getMin_increment()%>$ </span> <br>
+                    <% } %>
                     <% for (User seller : users) {
                         if (seller.getId()==auction.getSeller_id()){ %>
                             <span class="label-1">Seller : <%=seller.getUsername()%> </span> <br>

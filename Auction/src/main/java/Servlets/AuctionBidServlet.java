@@ -62,17 +62,34 @@ public class AuctionBidServlet extends HttpServlet implements GeneralConstants {
         if (currentAuction!=null){
             if (currentUser != null){
                 bidder = currentUser.getId();
-                if (currentAuction.getCurrent_price()+currentAuction.getMin_increment() <= newBid){
-                    auctionDAO.updateAuction(newBid,bidder,currentAuction.getId());
-                    BidderAuction bidderAuction = new BidderAuction(bidder,currentAuction.getId(),newBid);
-
-                    bidderAuctionDAO.removeBidderAuctionByUserAuction(bidder,currentAuction.getId());
-                    bidderAuctionDAO.insertBidderAuction(bidderAuction);
-
-                    response.sendRedirect(request.getContextPath() + "/account-home");
-                }else{
-                    request.setAttribute(MESSAGE_STRING, "Bid was insufficient");
+                if (currentUser.getId()==currentAuction.getSeller_id()){
+                    request.setAttribute(MESSAGE_STRING, "You can't bet on your own auctions");
                     request.getRequestDispatcher("Pages/auction-bid.jsp").forward(request, response);
+                }else {
+                    if (currentAuction.getCurrent_price() + currentAuction.getMin_increment() <= newBid) {
+                        auctionDAO.updateAuction(newBid, bidder, currentAuction.getId());
+                        BidderAuction bidderAuction = new BidderAuction(bidder, currentAuction.getId(), newBid);
+
+                        bidderAuctionDAO.removeBidderAuctionByUserAuction(bidder, currentAuction.getId());
+                        bidderAuctionDAO.insertBidderAuction(bidderAuction);
+
+                        response.sendRedirect(request.getContextPath() + "/account-home");
+                    } else {
+                        if (currentAuction.getSeller_id() == currentAuction.getCurrent_bidder_id() // there is no current bidder
+                                && currentAuction.getCurrent_price() <= newBid){
+
+                            auctionDAO.updateAuction(newBid, bidder, currentAuction.getId());
+                            BidderAuction bidderAuction = new BidderAuction(bidder, currentAuction.getId(), newBid);
+
+                            bidderAuctionDAO.removeBidderAuctionByUserAuction(bidder, currentAuction.getId());
+                            bidderAuctionDAO.insertBidderAuction(bidderAuction);
+
+                            response.sendRedirect(request.getContextPath() + "/account-home");
+                        }else {
+                            request.setAttribute(MESSAGE_STRING, "Bid was insufficient");
+                            request.getRequestDispatcher("Pages/auction-bid.jsp").forward(request, response);
+                        }
+                    }
                 }
             }
         }else{
