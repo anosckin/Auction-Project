@@ -21,7 +21,7 @@ public class SqlReviewsDao implements ReviewsDAO{
     @Override
     public Review getReview(int id){
         Review review = null;
-
+        
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Reviews" +
                     " WHERE ID=?;");

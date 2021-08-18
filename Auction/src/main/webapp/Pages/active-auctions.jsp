@@ -37,6 +37,7 @@
                 <li>
                     <span class="label-2-blue"> Item Code: <%=auction.getId()%> </span> <br>
                     <span class="label-2-blue"> Item Name: <%=auction.getItem_name()%> </span> <br>
+                    <span class="label-2-blue"> End Date: <%=auction.getEnd_date().toString()%> </span> <br>
                     <span class="score-text">   Item Description: <%=auction.getItem_description()%></span> <br>
                     <span class="label-2-blue"> Current Price: <%=auction.getCurrent_price()%>$ </span> <br>
                     <span class="score-text"> Minimal Increment: <%=auction.getMin_increment()%>$ </span> <br>

@@ -3,7 +3,6 @@ package Models;
 import Helper.GeneralConstants;
 
 import java.sql.Timestamp;
-import java.util.*;
 
 public class Message implements GeneralConstants{
 

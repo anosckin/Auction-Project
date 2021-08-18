@@ -1,15 +1,9 @@
 package Servlets;
 
-import DAO.AuctionDAOInterface;
-import DAO.SqlAuctionDAO;
-import DAO.SqlReviewsDao;
-import DAO.UserDAO;
+import DAO.*;
 import Helper.GeneralConstants;
 import Helper.Hasher;
-import Models.Auction;
-import Models.Review;
-import Models.User;
-import Models.UserInfo;
+import Models.*;
 import Services.UserService;
 
 import javax.servlet.ServletContext;
@@ -32,9 +26,8 @@ public class AuctionBidServlet extends HttpServlet implements GeneralConstants {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servletContext = getServletContext();
-        UserService userService = (UserService)servletContext.getAttribute(USER_SERVICE);
-        UserDAO userDAO = userService.getUserDAO();
         SqlAuctionDAO auctionDAO = (SqlAuctionDAO) servletContext.getAttribute(SqlAuctionDAO.AUCTIONDAO_STR);
+        SqlBidderAuctionDAO bidderAuctionDAO = (SqlBidderAuctionDAO) servletContext.getAttribute(SqlBidderAuctionDAO.ATTRIBUTE_NAME);
 
         HttpSession session = request.getSession();
         User currentUser = (User)session.getAttribute(CURRENT_USER_STRING);
@@ -71,6 +64,11 @@ public class AuctionBidServlet extends HttpServlet implements GeneralConstants {
                 bidder = currentUser.getId();
                 if (currentAuction.getCurrent_price()+currentAuction.getMin_increment() <= newBid){
                     auctionDAO.updateAuction(newBid,bidder,currentAuction.getId());
+                    BidderAuction bidderAuction = new BidderAuction(bidder,currentAuction.getId(),newBid);
+
+                    bidderAuctionDAO.removeBidderAuctionByUserAuction(bidder,currentAuction.getId());
+                    bidderAuctionDAO.insertBidderAuction(bidderAuction);
+
                     response.sendRedirect(request.getContextPath() + "/account-home");
                 }else{
                     request.setAttribute(MESSAGE_STRING, "Bid was insufficient");
