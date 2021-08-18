@@ -188,24 +188,26 @@ public class SqlUserDAO implements UserDAO {
                               resultSet.getString(3), resultSet.getString(4),
                               resultSet.getBoolean(5), resultSet.getBoolean(6),
                               resultSet.getBoolean(7), resultSet.getInt(8),
-                              resultSet.getInt(9), resultSet.getInt(10));
+                              resultSet.getDouble(9), resultSet.getInt(10));
         } catch (SQLException throwables) { throwables.printStackTrace(); }
 
         return result;
     }
 
-    public boolean updateRecipientRating(int score, int recipient_id){
+    public boolean updateRecipientRating(double score, int recipient_id){
         User user = getUser(recipient_id);
         if (user == null){
             return false;
         }
 
         double totalScore = user.getRating() * user.getNumReviews();
+        System.out.println("Rating: " + user.getRating());
         totalScore += score;
         int newNumReviews = user.getNumReviews() + 1;
         double newRating = totalScore / newNumReviews;
         try {
             StringBuilder builder = new StringBuilder("update Users SET rating = ");
+            System.out.println(newRating);
             builder.append(newRating);
             builder.append(", num_reviews = ");
             builder.append(newNumReviews);

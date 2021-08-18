@@ -46,17 +46,16 @@ public class SqlReviewsDao implements ReviewsDAO{
                     "(reviewer_ID, recipient_ID, score, review)" +
                     "VALUES (?, ?, ?, ?)");
 
-//            stmt.setInt(1, review.getId());
             stmt.setInt(1, review.getReviewerId());
             stmt.setInt(2, review.getRecipientId());
-            stmt.setInt(3, review.getScore());
+            stmt.setDouble(3, review.getScore());
             stmt.setString(4, review.getReview());
 
             int numRowsAffected = stmt.executeUpdate();
             SqlUserDAO userDao = new SqlUserDAO(connection);
             boolean ans = userDao.updateRecipientRating(review.getScore(), review.getRecipientId());
 
-            return numRowsAffected == 1 && ans;
+            return (numRowsAffected == 1 && ans);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

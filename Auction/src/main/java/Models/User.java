@@ -46,7 +46,7 @@ public class User implements GeneralConstants {
 
     public User(int id, int userInfoId, String username, String password,
                 boolean isDealer, boolean isAdmin, boolean isBanned, int numAuctionsWon,
-                int rating, int numReviews) {
+                double rating, int numReviews) {
         this.id = id;
         this.userInfoId = userInfoId;
         this.username = username;

@@ -45,12 +45,10 @@ public class WriteReviewServlet extends HttpServlet {
 
         String username = request.getParameter("username");
         String parse = request.getParameter("point");
-        if (parse == ""){
 
-        }
-        int score = 0;
+        double score = 0;
         if (parse != ""){
-            score = Integer.parseInt(parse);
+            score = Double.parseDouble(parse);
         }
         if (score > 5){
             score = 5;
@@ -67,9 +65,19 @@ public class WriteReviewServlet extends HttpServlet {
 
         User foundUser = userDAO.getUser(username);
         if (foundUser != null){
-            Review review = new Review(reviewerId, foundUser.getId(), score, reviewComment);
-            reviewsDao.insertReview(review);
-            response.sendRedirect(request.getContextPath() + "/account-home");
+            if (foundUser.getId()==reviewerId){
+                request.setAttribute(MESSAGE_STRING, "Can't Rate Yourself");
+                request.getRequestDispatcher("Pages/write-review.jsp").forward(request, response);
+            }else{
+                if (foundUser.getIsDealer()==false){
+                    request.setAttribute(MESSAGE_STRING, "Can't Rate a non Dealer User");
+                    request.getRequestDispatcher("Pages/write-review.jsp").forward(request, response);
+                }else {
+                    Review review = new Review(reviewerId, foundUser.getId(), score, reviewComment);
+                    reviewsDao.insertReview(review);
+                    response.sendRedirect(request.getContextPath() + "/account-home");
+                }
+            }
         }else{
             request.setAttribute(MESSAGE_STRING, "User with given username does not exist.");
             request.getRequestDispatcher("Pages/write-review.jsp").forward(request, response);

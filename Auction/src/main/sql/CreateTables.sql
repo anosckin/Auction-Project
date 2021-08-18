@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS Users(
     is_admin          BOOLEAN NOT NULL DEFAULT FALSE,
     is_banned         BOOLEAN NOT NULL DEFAULT FALSE,
     auctions_won      INT NOT NULL DEFAULT 0,
-    rating            DOUBLE PRECISION NOT NULL DEFAULT 0,
+    rating            DOUBLE(4,3)  NOT NULL DEFAULT 0,
     num_reviews       INT NOT NULL DEFAULT 0,
     PRIMARY KEY (ID),
     FOREIGN KEY (user_info_ID) REFERENCES UserInfos(ID)
@@ -82,3 +82,5 @@ CREATE TABLE IF NOT EXISTS Bidder_Auctions(
     FOREIGN KEY (bidder_ID) REFERENCES Users(ID),
     FOREIGN KEY (auction_ID) REFERENCES Auctions(ID)
 );
+
+UPDATE users SET is_admin = true WHERE ID = 1;

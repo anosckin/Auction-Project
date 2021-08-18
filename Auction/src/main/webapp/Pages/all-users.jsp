@@ -73,6 +73,7 @@
                                         "</td><td>"+user.getNumAuctionsWon() +
                                         "</td><td>"+user.getRating() +
                                         "</td></tr>");
+                            System.out.println(user.getRating());
                         }
                     %>
                     </tbody>

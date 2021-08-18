@@ -7,10 +7,10 @@ public class Review implements GeneralConstants {
     private int id;
     private int reviewerId;
     private int recipientId;
-    private int score;
+    private double score;
     private String review;
 
-    public Review(int id , int reviewerId , int recipientId , int score, String review) {
+    public Review(int id , int reviewerId , int recipientId , double score, String review) {
         this.id = id;
         this.reviewerId=reviewerId;
         this.recipientId=recipientId;
@@ -18,7 +18,7 @@ public class Review implements GeneralConstants {
         this.review=review;
     }
 
-    public Review(int reviewerId , int recipientId , int score, String review) {
+    public Review(int reviewerId , int recipientId , double score, String review) {
         this (NO_ID,reviewerId,recipientId,score,review);
     }
 
@@ -34,7 +34,7 @@ public class Review implements GeneralConstants {
         return recipientId;
     }
 
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 
@@ -57,7 +57,7 @@ public class Review implements GeneralConstants {
     /**
     @param score must be between 1 and 5, anything else is turned to -1
      */
-    public void setScore (int score) {
+    public void setScore (double score) {
         if (1<=score && score<=5) {
             this.score = score;
         }else{
