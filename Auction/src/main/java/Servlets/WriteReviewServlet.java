@@ -54,10 +54,10 @@ public class WriteReviewServlet extends HttpServlet {
         int score;
         score = Integer.parseInt(parse);
 
-        if (score > 5){
-            score = 5;
-        }else if (score < 0){
-            score = 0;
+        if (score > 5 || score < 0){
+            request.setAttribute(MESSAGE_STRING, "You Have to Give a Rating between 0-5");
+            request.getRequestDispatcher("Pages/write-review.jsp").forward(request, response);
+            return ;
         }
 
         String reviewComment = request.getParameter("comment");
