@@ -48,7 +48,7 @@ public class SqlReviewsDao implements ReviewsDAO{
 
             stmt.setInt(1, review.getReviewerId());
             stmt.setInt(2, review.getRecipientId());
-            stmt.setDouble(3, review.getScore());
+            stmt.setInt(3, review.getScore());
             stmt.setString(4, review.getReview());
 
             int numRowsAffected = stmt.executeUpdate();

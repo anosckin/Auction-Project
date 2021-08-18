@@ -201,13 +201,11 @@ public class SqlUserDAO implements UserDAO {
         }
 
         double totalScore = user.getRating() * user.getNumReviews();
-        System.out.println("Rating: " + user.getRating());
         totalScore += score;
         int newNumReviews = user.getNumReviews() + 1;
         double newRating = totalScore / newNumReviews;
         try {
             StringBuilder builder = new StringBuilder("update Users SET rating = ");
-            System.out.println(newRating);
             builder.append(newRating);
             builder.append(", num_reviews = ");
             builder.append(newNumReviews);

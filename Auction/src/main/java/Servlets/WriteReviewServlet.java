@@ -46,9 +46,9 @@ public class WriteReviewServlet extends HttpServlet {
         String username = request.getParameter("username");
         String parse = request.getParameter("point");
 
-        double score = 0;
+        int score = 0;
         if (parse != ""){
-            score = Double.parseDouble(parse);
+            score = Integer.parseInt(parse);
         }
         if (score > 5){
             score = 5;
