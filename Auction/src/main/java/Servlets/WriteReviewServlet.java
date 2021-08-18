@@ -41,15 +41,19 @@ public class WriteReviewServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         User currentUser = (User)session.getAttribute(CURRENT_USER_STRING);
-        UserInfo currentUserInfo = (UserInfo)session.getAttribute(CURRENT_USER_INFO_STRING);
 
         String username = request.getParameter("username");
         String parse = request.getParameter("point");
 
-        int score = 0;
-        if (parse != ""){
-            score = Integer.parseInt(parse);
+        if (parse.equals("")) {
+            request.setAttribute(MESSAGE_STRING, "You Have to Give a Rating");
+            request.getRequestDispatcher("Pages/write-review.jsp").forward(request, response);
+            return;
         }
+
+        int score;
+        score = Integer.parseInt(parse);
+
         if (score > 5){
             score = 5;
         }else if (score < 0){
@@ -69,7 +73,7 @@ public class WriteReviewServlet extends HttpServlet {
                 request.setAttribute(MESSAGE_STRING, "Can't Rate Yourself");
                 request.getRequestDispatcher("Pages/write-review.jsp").forward(request, response);
             }else{
-                if (foundUser.getIsDealer()==false){
+                if (!foundUser.getIsDealer()){
                     request.setAttribute(MESSAGE_STRING, "Can't Rate a non Dealer User");
                     request.getRequestDispatcher("Pages/write-review.jsp").forward(request, response);
                 }else {
