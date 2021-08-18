@@ -1,6 +1,8 @@
+CREATE DATABASE IF NOT EXISTS oop_project;
+
 use oop_project;
 
-CREATE TABLE UserInfos(
+CREATE TABLE IF NOT EXISTS UserInfos(
     ID                INT NOT NULL AUTO_INCREMENT,
     first_name        VARCHAR(50) NOT NULL,
     last_name         VARCHAR(70) NOT NULL,
@@ -11,7 +13,7 @@ CREATE TABLE UserInfos(
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE Users(
+CREATE TABLE IF NOT EXISTS Users(
     ID                INT NOT NULL AUTO_INCREMENT,
     user_info_ID      INT NOT NULL,
     user_name         VARCHAR(100) BINARY NOT NULL UNIQUE,
@@ -26,7 +28,7 @@ CREATE TABLE Users(
     FOREIGN KEY (user_info_ID) REFERENCES UserInfos(ID)
 );
 
-CREATE TABLE Messages(
+CREATE TABLE IF NOT EXISTS Messages(
     ID                INT NOT NULL AUTO_INCREMENT,
     from_user_ID      INT NOT NULL,
     to_user_ID        INT NOT NULL,
@@ -37,7 +39,7 @@ CREATE TABLE Messages(
     FOREIGN KEY (to_user_ID) REFERENCES Users(ID)
 );
 
-CREATE TABLE User_Followers(
+CREATE TABLE IF NOT EXISTS User_Followers(
     ID                INT NOT NULL AUTO_INCREMENT,
     follower_ID       INT NOT NULL,
     followee_ID       INT NOT NULL,
@@ -46,7 +48,7 @@ CREATE TABLE User_Followers(
     FOREIGN KEY (followee_ID) REFERENCES Users(ID)
 );
 
-CREATE TABLE Reviews(
+CREATE TABLE IF NOT EXISTS Reviews(
     ID                INT NOT NULL AUTO_INCREMENT,
     reviewer_ID       INT NOT NULL,
     recipient_ID      INT NOT NULL,
@@ -57,7 +59,7 @@ CREATE TABLE Reviews(
     FOREIGN KEY (recipient_ID) REFERENCES Users(ID)
 );
 
-CREATE TABLE Auctions(
+CREATE TABLE IF NOT EXISTS Auctions(
     ID                INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     seller_ID     	INT NOT NULL,
     current_bidder_ID INT NOT NULL,
@@ -72,7 +74,7 @@ CREATE TABLE Auctions(
 );
 
 
-CREATE TABLE Bidder_Auctions(
+CREATE TABLE IF NOT EXISTS Bidder_Auctions(
     ID                INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     bidder_ID     	INT NOT NULL,
     auction_ID        INT NOT NULL,
