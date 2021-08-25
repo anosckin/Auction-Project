@@ -42,8 +42,7 @@
                     <span class="label-2-blue"> Current Price: <%=auction.getCurrent_price()%>$ </span> <br>
                     <% if (auction.getSeller_id()==auction.getCurrent_bidder_id()){ %>
                        <span class="score-text"> Minimal Next Bid:  <%=auction.getCurrent_price()%>$ </span> <br>
-                    <% } %>
-                    <% if (auction.getSeller_id()!=auction.getCurrent_bidder_id()){ %>
+                    <% } else{ %>
                         <span class="score-text"> Minimal Next Bid:  <%=auction.getCurrent_price()+auction.getMin_increment()%>$ </span> <br>
                     <% } %>
                     <% for (User seller : users) {

@@ -28,10 +28,6 @@ public class ContextListener implements ServletContextListener, GeneralConstants
             dataSource.setUrl(reader.getString("db.url"));
             dataSource.setUsername(reader.getString("db.username"));
             dataSource.setPassword(reader.getString("db.password"));
-//            Uncomment for testing
-//            System.out.println(reader.getString("db.url"));
-//            System.out.println(reader.getString("db.username"));
-//            System.out.println(reader.getString("db.password"));
 
             connection = dataSource.getConnection();
 
