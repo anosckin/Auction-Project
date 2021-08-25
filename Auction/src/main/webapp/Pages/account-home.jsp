@@ -49,7 +49,9 @@
         <% } %>
         <a class="h4-link" href="active-auctions">Active auctions</a>
         <br>
-        <a class="h4-link" href="user-auctions">Auctions you have won/are winning</a>
+        <a class="h4-link" href="interested-auctions">Active auctions you have bid on</a>
+        <br>
+        <a class="h4-link" href="user-auctions">Auctions you have won</a>
         <br>
         <a class="h4-link" href="auction-bid">Bid on an active auction</a>
         <br>
