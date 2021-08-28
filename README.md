@@ -2,8 +2,6 @@
 An Auction website.
 Users can Put up items for sale, bid on currently active autcions and write reviews for items that they have won in the auctions.
 
-## Details
-
 ## Requirements
 - need to have tomcat installed
 - need to have maven installed
