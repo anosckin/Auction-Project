@@ -20,7 +20,10 @@ db.password = password
 - run the CreateTables.sql to setup the database
 - from maven do : "mvn tomcat7:run" (make sure port 8080 is empty)
 - website can be entered on http://localhost:8080/
-- after creating first account, give it admin by the following command: ```UPDATE users SET is_admin = true WHERE ID = 1;```
+- after creating first account, give it admin by the following command: 
+```
+UPDATE users SET is_admin = true WHERE ID = 1;
+```
 
 ## Usage
 There are 3 types of users: admins, dealers and customers.
