@@ -1,6 +1,6 @@
 # Auction-Project
 An Auction website.
-Users can Put up items for sale, bid on currently active autcions and write reviews for items that they have won in the auctions.
+Users can Put up items for sale, bid on currently active auctions and write reviews for items that they have won in the auctions.
 
 ## Requirements
 - Tomcat 10.0.10
