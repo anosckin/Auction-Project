@@ -32,6 +32,17 @@ There are 3 types of users: admins, dealers and customers.
 - Everyone can see what auctions they have won.
 - There is a Leaderboard of users who have the most auction wins.
 
+## Auction
+Auction is described with the following traits:
+- Item code
+- Item name
+- End date
+- Starting Price
+- Minimum increment
+- Item description
+
+An auction is active if the current date is before the end date.
+
 ## Some Safety precautions
 - Password is hashed with SHA 256.
 - App remembers the session so just entering a url wont redirect.
