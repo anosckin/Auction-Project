@@ -3,10 +3,10 @@ An Auction website.
 Users can Put up items for sale, bid on currently active autcions and write reviews for items that they have won in the auctions.
 
 ## Requirements
-- need to have tomcat installed
-- need to have maven installed
+- Tomcat 10.0.10
+- Maven 3.8.2
 - JDK 16
-- MySql server
+- Running MySql server
 
 ## How to run
 - Create a MySQL database
