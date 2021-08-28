@@ -45,6 +45,6 @@ An auction is active if the current date is before the end date.
 
 ## Some Safety precautions
 - Password is hashed with SHA 256.
-- App remembers the session so just entering a url wont redirect.
+- App remembers the session so just entering a url won't redirect.
 - Protected from SQL injections
 - dbconfig.properties is hidden with gitignore
