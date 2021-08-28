@@ -33,10 +33,8 @@
 
     <ol>
         <%  for (Auction auction : auctions) {
-            long millis=System.currentTimeMillis();
-            java.sql.Date date=new java.sql.Date(millis);
             if (auction.getCurrent_bidder_id()!=auction.getSeller_id()
-                    && auction.getEnd_date().compareTo(date)<0
+                    && !auction.isActive()
                     && currentUser.getId() == auction.getCurrent_bidder_id()){ %>
         <li>
             <span class="label-2-blue"> Item Code: <%=auction.getId()%> </span> <br>

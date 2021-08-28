@@ -50,13 +50,15 @@ CREATE TABLE IF NOT EXISTS User_Followers(
 
 CREATE TABLE IF NOT EXISTS Reviews(
     ID                INT NOT NULL AUTO_INCREMENT,
+    item_ID           INT NOT NULL,
     reviewer_ID       INT NOT NULL,
     recipient_ID      INT NOT NULL,
     score             INT NOT NULL,
     review            VARCHAR(500), --  reviews will have a character limit of 500 (can be empty)
     PRIMARY KEY (ID),
     FOREIGN KEY (reviewer_ID) REFERENCES Users(ID),
-    FOREIGN KEY (recipient_ID) REFERENCES Users(ID)
+    FOREIGN KEY (recipient_ID) REFERENCES Users(ID),
+    UNIQUE (item_ID)
 );
 
 CREATE TABLE IF NOT EXISTS Auctions(
@@ -83,4 +85,4 @@ CREATE TABLE IF NOT EXISTS Bidder_Auctions(
     FOREIGN KEY (auction_ID) REFERENCES Auctions(ID)
 );
 
-UPDATE users SET is_admin = true WHERE ID = 1;
+-- UPDATE users SET is_admin = true WHERE ID = 1;

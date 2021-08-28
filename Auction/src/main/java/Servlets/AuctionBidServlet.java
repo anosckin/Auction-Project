@@ -49,10 +49,8 @@ public class AuctionBidServlet extends HttpServlet implements GeneralConstants {
             request.getRequestDispatcher("Pages/auction-bid.jsp").forward(request, response);
             return;
         }
-        long millis=System.currentTimeMillis();
-        java.sql.Date date=new java.sql.Date(millis);
 
-        if (currentAuction.getEnd_date().compareTo(date)<0){
+        if (!currentAuction.isActive()){
             request.setAttribute(MESSAGE_STRING, "Bid has already ended");
             request.getRequestDispatcher("Pages/auction-bid.jsp").forward(request, response);
             return;

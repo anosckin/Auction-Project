@@ -36,37 +36,66 @@ public class AddAuctionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext servletContext = getServletContext();
-        UserService userService = (UserService)servletContext.getAttribute(USER_SERVICE);
-        UserDAO userDAO = userService.getUserDAO();
         SqlAuctionDAO auctionsDao = (SqlAuctionDAO) servletContext.getAttribute(SqlAuctionDAO.AUCTIONDAO_STR);
 
         HttpSession session = request.getSession();
         User currentUser = (User)session.getAttribute(CURRENT_USER_STRING);
-        UserInfo currentUserInfo = (UserInfo)session.getAttribute(CURRENT_USER_INFO_STRING);
 
         String itemName = request.getParameter("item-name");
+
+        if (itemName.equals("")){
+            request.setAttribute(MESSAGE_STRING, "Please Enter Item Name");
+            request.getRequestDispatcher("Pages/add-auction.jsp").forward(request, response);
+            return;
+        }
+
         String parse = request.getParameter("price");
 
+        if (parse.equals("")){
+            request.setAttribute(MESSAGE_STRING, "Please Enter The Price");
+            request.getRequestDispatcher("Pages/add-auction.jsp").forward(request, response);
+            return;
+        }
+
         int price = 0;
+
         if (parse != ""){
             price = Integer.parseInt(parse);
         }
+
         if (price < 0){
             price=Math.abs(price);
         }
 
         parse = request.getParameter("min-increment");
 
+        if (parse.equals("")){
+            request.setAttribute(MESSAGE_STRING, "Please Enter The Minimum increment");
+            request.getRequestDispatcher("Pages/add-auction.jsp").forward(request, response);
+            return;
+        }
+
         int minIncrement = 0;
         if (parse != ""){
             minIncrement = Integer.parseInt(parse);
         }
+        if (minIncrement<1){
+            request.setAttribute(MESSAGE_STRING, "Please Enter a Minimum Increment which is a positive number");
+            request.getRequestDispatcher("Pages/add-auction.jsp").forward(request, response);
+            return;
+        }
+
         minIncrement = Math.max(minIncrement,1);
 
         String description = request.getParameter("comment");
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String endDateString = request.getParameter("end-date");
+        if (endDateString.equals("")){
+            request.setAttribute(MESSAGE_STRING, "Please Enter an End Date");
+            request.getRequestDispatcher("Pages/add-auction.jsp").forward(request, response);
+            return;
+        }
+
         Date endDate = Date.valueOf(endDateString);
 
         int dealerId = -1;
@@ -74,7 +103,6 @@ public class AddAuctionServlet extends HttpServlet {
         if (currentUser != null){
             dealerId = currentUser.getId();
         }
-
 
         Auction auction = new Auction(NO_ID,dealerId,dealerId,price,minIncrement,price,endDate,itemName,description);
 

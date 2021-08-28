@@ -43,13 +43,14 @@ public class SqlReviewsDao implements ReviewsDAO{
     public boolean insertReview(Review review){
         try {
             PreparedStatement stmt = connection.prepareStatement("INSERT INTO Reviews" +
-                    "(reviewer_ID, recipient_ID, score, review)" +
-                    "VALUES (?, ?, ?, ?)");
+                    "(item_ID, reviewer_ID, recipient_ID, score, review)" +
+                    "VALUES (?, ?, ?, ?, ?)");
 
-            stmt.setInt(1, review.getReviewerId());
-            stmt.setInt(2, review.getRecipientId());
-            stmt.setInt(3, review.getScore());
-            stmt.setString(4, review.getReview());
+            stmt.setInt(1, review.getItemId());
+            stmt.setInt(2, review.getReviewerId());
+            stmt.setInt(3, review.getRecipientId());
+            stmt.setInt(4, review.getScore());
+            stmt.setString(5, review.getReview());
 
             int numRowsAffected = stmt.executeUpdate();
             SqlUserDAO userDao = new SqlUserDAO(connection);
@@ -150,7 +151,7 @@ public class SqlReviewsDao implements ReviewsDAO{
         try {
             result = new Review(resultSet.getInt(1), resultSet.getInt(2),
                     resultSet.getInt(3), resultSet.getInt(4),
-                    resultSet.getString(5));
+                    resultSet.getInt(5),resultSet.getString(6));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
