@@ -28,3 +28,12 @@ There are 3 types of users: admins, dealers and customers.
 - Dealers can start auctions. Dealers can also see reviews of their products.
 - Everyone can write a review on an auction they have won.
 - Everyone can bid on active auctions.
+- Everyone can see what auctions they have put their bids on and if they are winning them or not.
+- Everyone can see what auctions they have won.
+- There is a Leaderboard of users who have the most auction wins.
+
+## Some Safety precautions
+- Password is hashed with SHA 256.
+- App remembers the session so just entering a url wont redirect.
+- Protected from SQL injections
+- dbconfig.properties is hidden with gitignore
