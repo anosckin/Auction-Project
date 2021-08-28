@@ -22,3 +22,9 @@ db.password=password
 - website can be entered on http://localhost:8080/
 - after creating first account, give it admin by the following command: "UPDATE users SET is_admin = true WHERE ID = 1;"
 
+## Usage
+There are 3 types of users: admins, dealers and customers.
+- Admins can appoint dealers and other admins. Admins can also ban other users.
+- Dealers can start auctions. Dealers can also see reviews of their products.
+- Everyone can write a review on an auction they have won.
+- Everyone can bid on active auctions.
