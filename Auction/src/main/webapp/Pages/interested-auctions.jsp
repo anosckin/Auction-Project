@@ -35,15 +35,13 @@
     <ol>
         <% for (BidderAuction bidderAuction : bidderAuctions) {
             Auction auction = auctionDao.getAuction(bidderAuction.getAuctionId());
-            long millis=System.currentTimeMillis();
-            java.sql.Date date=new java.sql.Date(millis);
             if (auction.getCurrent_bidder_id()!=auction.getSeller_id()
-                    && auction.getEnd_date().compareTo(date)>=0){ %>
+                    && auction.isActive()){ %>
         <li>
             <% if (auction.getCurrent_bidder_id() == bidderAuction.getBidderId()){%>
-                <span class="label-2-blue"> You are currently winning: </span> <br>
+                <span class="label-2-blue"> You Are Currently Winning: </span> <br>
             <%}else{%>
-                <span class="label-2-blue"> Someone is outBidding you!: </span> <br>
+                <span class="label-2-blue"> Someone is Outbidding You! </span> <br>
             <%}%>
             <span class="label-2-blue"> Item Code: <%=auction.getId()%> </span> <br>
             <span class="label-2-blue"> Item Name: <%=auction.getItem_name()%> </span> <br>

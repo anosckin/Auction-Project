@@ -19,7 +19,7 @@
             <div class="form-wrapper">
                 <h3 class="h3">Review Details</h3>
                 <br>
-                <input class="input-2" type="text" id="username-input" name="username" placeholder="username">
+                <input class="input-2" type="text" id="item-id" name="item" placeholder="Item Code">
                 <br>
                 <input class="input-2" type="number" id="point-input" name="point" placeholder="Enter point 0-5...">
                 <br>

@@ -16,7 +16,7 @@ public class Auction implements GeneralConstants {
     private String item_desciption;
 
     public Auction(int id, int seller_id, int current_bidder_id, int starting_price, int min_increment, int current_price, Date end_date,
-                    String item_name, String item_desciption) {
+                   String item_name, String item_desciption) {
         this.id = id;
         this.seller_id = seller_id;
         this.current_bidder_id = current_bidder_id;
@@ -24,8 +24,8 @@ public class Auction implements GeneralConstants {
         this.min_increment = min_increment;
         this.current_price = current_price;
         this.end_date = end_date;
-        this.item_name=item_name;
-        this.item_desciption=item_desciption;
+        this.item_name = item_name;
+        this.item_desciption = item_desciption;
     }
 
 
@@ -99,6 +99,16 @@ public class Auction implements GeneralConstants {
 
     public void setItem_desciption(String item_desciption) {
         this.item_desciption = item_desciption;
+    }
+
+    public boolean isActive() {
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+
+        if (this.getEnd_date().compareTo(date) >= 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override

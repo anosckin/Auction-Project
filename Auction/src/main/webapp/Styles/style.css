@@ -210,3 +210,38 @@
 	font-family: 'Poppins', sans-serif;
 	font-size: 22px;
 }
+#container {
+	width: 240px;
+	overflow: hidden;
+	background-color: yellow;
+}
+#content {
+	position: relative;
+	height: 30em;
+
+	-moz-column-width: 240px;
+	-webkit-column-width: 240px;
+	column-width: 240px;
+
+	-moz-column-gap: 10px;
+	-webkit-column-gap: 10px;
+	column-gap: 10px;
+}
+
+#container {
+	width: 240px;
+	overflow: hidden;
+	background-color: yellow;
+}
+#content {
+	position: relative;
+	height: 30em;
+
+	-moz-column-width: 240px;
+	-webkit-column-width: 240px;
+	column-width: 240px;
+
+	-moz-column-gap: 10px;
+	-webkit-column-gap: 10px;
+	column-gap: 10px;
+}

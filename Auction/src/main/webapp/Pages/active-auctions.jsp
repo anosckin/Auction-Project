@@ -31,9 +31,7 @@
 
     <ol>
         <% for (Auction auction : auctions) {
-            long millis=System.currentTimeMillis();
-            java.sql.Date date=new java.sql.Date(millis);
-            if (auction.getEnd_date().compareTo(date)>=0){ %>
+            if (auction.isActive()){ %>
                 <li>
                     <span class="label-2-blue"> Item Code: <%=auction.getId()%> </span> <br>
                     <span class="label-2-blue"> Item Name: <%=auction.getItem_name()%> </span> <br>
