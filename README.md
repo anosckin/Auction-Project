@@ -11,7 +11,7 @@ Users can Put up items for sale, bid on currently active auctions and write revi
 ## How to run
 - Create a MySQL database
 - create src/main/java/resources/dbconfig.properties
-- in it write db.url, db.username, dq.password:
+- in it write db.url, db.username, db.password:
 ```
 db.url = jdbc:mysql://localhost:3306/oop_project
 db.username = username
