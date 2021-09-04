@@ -1,0 +1,15 @@
+run cmd as admin
+--
+
+netstat -ano | findstr 8080
+
+output example:
+TCP    0.0.0.0:18080          0.0.0.0:0              LISTENING       19788
+TCP    [::]:18080             [::]:0                 LISTENING       19788
+
+taskkill  /F  /PID  19788
+
+output:
+SUCCESS: The process with PID 19788 has been terminated.
+
+--

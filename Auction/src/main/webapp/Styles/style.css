@@ -16,6 +16,15 @@
 	width: 800px;
 }
 
+input[type="submit"] {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 5px 10px;
+	text-decoration: none;
+	margin: 4px 0px;
+	cursor: pointer;
+}
 
 .h2 {
 	font-size: 34px;
@@ -245,3 +254,4 @@
 	-webkit-column-gap: 10px;
 	column-gap: 10px;
 }
+

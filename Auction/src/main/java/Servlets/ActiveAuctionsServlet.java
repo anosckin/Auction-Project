@@ -10,6 +10,7 @@ import Services.UserService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import java.util.List;
 import static Helper.GeneralConstants.*;
 import static Helper.GeneralConstants.NO_ID;
 
+@WebServlet(name = "ActiveAuctionsServlet", urlPatterns = {"/ActiveAuctionsServlet"})
 public class ActiveAuctionsServlet extends HttpServlet {
 
 
