@@ -46,6 +46,12 @@ public class InterestedAuctionsServlet extends HttpServlet {
         SqlAuctionDAO auctionDao = (SqlAuctionDAO)servletContext.getAttribute(SqlAuctionDAO.AUCTIONDAO_STR);
         request.setAttribute("auctionDAO", auctionDao);
 
+        UserService userService = (UserService)servletContext.getAttribute(USER_SERVICE);
+        UserDAO userDAO = userService.getUserDAO();
+
+        List<User> topUsers = userDAO.getAllUsers();
+        request.setAttribute("users", topUsers);
+
         request.getRequestDispatcher("Pages/interested-auctions.jsp").forward(request, response);
     }
 }

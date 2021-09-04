@@ -9,8 +9,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    List<Auction> auctions = (List<Auction>)request.getAttribute("auctions");
-    List<User> users = (List<User>)request.getAttribute("users");
+    List<Auction> auctions = (List<Auction>) request.getAttribute("auctions");
+    List<User> users = (List<User>) request.getAttribute("users");
 %>
 <html>
 <head>
@@ -30,38 +30,48 @@
     <br>
 
     <ol>
-        <% for (Auction auction : auctions) {{ %>
-        <li>
-            <span class="label-2-blue"> Item Code: <%=auction.getId()%> </span> <br>
-            <span class="label-2-blue"> Item Name: <%=auction.getItem_name()%> </span> <br>
-            <span class="score-text">   Item Description: <%=auction.getItem_description()%></span> <br>
-            <span class="label-2-blue"> Current Price: <%=auction.getCurrent_price()%>$ </span> <br>
-            <span class="score-text"> Minimal Increment: <%=auction.getMin_increment()%>$ </span> <br>
-            <% for (User seller : users) {
-                if (seller.getId()==auction.getSeller_id()){ %>
-                    <span class="label-1">Seller : <%=seller.getUsername()%> </span> <br>
-                    <span class="label-1">Seller Rating: <%= seller.getRating() %> </span> <br>
-                <% } %>
+        <% for (Auction auction : auctions) { %>
+        <li class="auction">
+            <% if (!auction.isActive() && auction.getCurrent_bidder_id()!=auction.getSeller_id()) {%>
+        <span style="font-size: 23px; color: red; font-weight: bold;"> SOLD </span> <br>
+            <% } else if (!auction.isActive() && auction.getCurrent_bidder_id()==auction.getSeller_id()) {%>
+            <span style="font-size: 23px; color: red; font-weight: bold;"> ENDED WITHOUT SELLING</span> <br>
             <% } %>
-            <br>
-            <% for (User bidder : users) {
-                if (bidder.getId()==auction.getCurrent_bidder_id() && bidder.getId() == auction.getSeller_id()){ %>
-            <span class="label-1">Current Bidder : N/A </span> <br>
-            <% } %>
-                <% if (bidder.getId()==auction.getCurrent_bidder_id() && bidder.getId() != auction.getSeller_id()){ %>
-                    <span class="label-1">Current Bidder : <%=bidder.getUsername()%> </span> <br>
-                <% } %>
-            <% } %>
-            -----------------------------------------------------------------------------------------------------
-            <br>
-        </li>
 
+            <span class="label-2-black"
+                  style="font-size: 23px; font-weight: bold;"> <%=auction.getItem_name()%> </span> <br>
+            <% for (User seller : users) {
+                if (seller.getId() == auction.getSeller_id()) { %>
+            <span class="label-2-black" style="font-size: 13px;">by <%=seller.getUsername()%> (<%= seller.getRating() %>/5.0) </span>
+            <% break;
+            } %>
+            <% } %>
+            <br>
+            <span class="label-2-black">   Item Description: </span>
+            <span class="label-2-black" style="font-size: 13px">   <%=auction.getItem_description()%></span> <br>
+
+            <span class="label-2-black"> <b> End Date: </b> <%=auction.getEnd_date().toString()%> </span> <br>
+
+            <span class="label-2-black"> Current Bid: <%=auction.getCurrent_price()%>$</span>
+            <% for (User bidder : users) {
+                if (bidder.getId() == auction.getCurrent_bidder_id() && bidder.getId() == auction.getSeller_id()) { %>
+            <span class="label-2-black " style="font-size: 13px;">by N/A </span> <br>
+            <% } %>
+            <% if (bidder.getId() == auction.getCurrent_bidder_id() && bidder.getId() != auction.getSeller_id()) { %>
+            <span class="label-2-black" style="font-size: 13px;">by <%=bidder.getUsername()%> </span> <br>
+            <% } %>
+            <% } %>
+            <% if (auction.isActive()) {%>
+            <% if (auction.getSeller_id() == auction.getCurrent_bidder_id()) { %>
+            <span class="label-2-black"> Minimal Next Bid:  <%=auction.getCurrent_price()%>$ </span>
+            <% } else { %>
+            <span class="label-2-black"> Minimal Next Bid:  <%=auction.getCurrent_price() + auction.getMin_increment()%>$ </span>
+            <% } %>
+        </li>
         <% } %>
         <% } %>
     </ol>
-
     <br>
-    <a class="h4-link" href="account-home">Back</a>
 </div>
 </body>
 </html>

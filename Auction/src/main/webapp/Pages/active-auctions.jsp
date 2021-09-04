@@ -31,58 +31,54 @@
     <span>
         <%  String errorMessage = (String)request.getAttribute("message");
             if (errorMessage != null) { %>
-        <span class="error-text"><%=errorMessage%></span>
+        <span class="error-text"><%=errorMessage%></span><br>
         <%  } %>
     </span>
-    <br>
 
-    <ol>
+
+    <ol >
         <% for (Auction auction : auctions) {
             if (auction.isActive()){ %>
-                <li>
-                    <span class="label-2-blue"> Item Code: <%=auction.getId()%> </span> <br>
-                    <span class="label-2-blue"> Item Name: <%=auction.getItem_name()%> </span> <br>
-                    <span class="label-2-blue"> End Date: <%=auction.getEnd_date().toString()%> </span> <br>
-                    <span class="label-2-blue">   Item Description: <%=auction.getItem_description()%></span> <br>
-                    <span class="label-2-blue"> Current Price: <%=auction.getCurrent_price()%>$ </span> <br>
-                    <% if (auction.getSeller_id()==auction.getCurrent_bidder_id()){ %>
-                       <span class="label-2-blue"> Minimal Next Bid:  <%=auction.getCurrent_price()%>$ </span>
-                    <% } else{ %>
-                        <span class="label-2-blue"> Minimal Next Bid:  <%=auction.getCurrent_price()+auction.getMin_increment()%>$ </span>
-                    <% } %>
-                    <br>
+                <li class = "auction" >
+                    <span class="label-2-black" style="font-size: 23px; font-weight: bold;"> <%=auction.getItem_name()%> </span> <br>
                     <% for (User seller : users) {
                         if (seller.getId()==auction.getSeller_id()){ %>
-                            <span class="label-2-blue">Seller : <%=seller.getUsername()%> </span> <br>
-                            <span class="label-2-blue">Seller Rating: <%= seller.getRating() %> </span>
+                            <span class="label-2-black" style ="font-size: 13px;">by <%=seller.getUsername()%> (<%= seller.getRating() %>/5.0) </span>
                         <%  break;
                         } %>
-                    <% } %>
-                    <br>
+                        <% } %>
+                        <br>
+                    <span class="label-2-black">   Item Description: </span>
+                    <span class="label-2-black" style = "font-size: 13px">   <%=auction.getItem_description()%></span> <br>
+
+                    <span class="label-2-black"> <b> End Date: </b> <%=auction.getEnd_date().toString()%> </span> <br>
+
+                    <span class="label-2-black" > Current Bid: <%=auction.getCurrent_price()%>$</span>
                     <% for (User bidder : users) {
                         if (bidder.getId()==auction.getCurrent_bidder_id() && bidder.getId() == auction.getSeller_id()){ %>
-                            <span class="label-2-blue">Current Bidder : N/A </span> <br>
+                            <span class="label-2-black " style ="font-size: 13px;">by N/A </span> <br>
                         <% } %>
                         <% if (bidder.getId()==auction.getCurrent_bidder_id() && bidder.getId() != auction.getSeller_id()){ %>
-                           <span class="label-2-blue">Current Bidder : <%=bidder.getUsername()%> </span> <br>
+                            <span class="label-2-black" style ="font-size: 13px;">by <%=bidder.getUsername()%> </span> <br>
                         <% } %>
                     <% } %>
+                    <% if (auction.getSeller_id()==auction.getCurrent_bidder_id()){ %>
+                    <span class="label-2-black"> Minimal Next Bid:  <%=auction.getCurrent_price()%>$ </span>
+                    <% } else{ %>
+                    <span class="label-2-black"> Minimal Next Bid:  <%=auction.getCurrent_price()+auction.getMin_increment()%>$ </span>
+                    <% } %>
                     <form class="form" action="MakeBidServlet" method="post">
-                        <input class="input-2" type="number" id="price" name="price" placeholder="Enter Bet amount">
+                        <input class="input-empty-box" type="number" id="price" name="price">
                         <br>
                         <input type="hidden" id="auctionId" name="auctionId" value = <%= auction.getId() %> >
                         <input type="submit" value="Place Bid" />
                     </form>
-                    -----------------------------------------------------------------------------------------------------
-                    <br>
                 </li>
-
             <% } %>
         <% } %>
     </ol>
 
     <br>
-    <a class="h4-link" href="account-home">Back</a>
 </div>
 </body>
 </html>
