@@ -18,7 +18,7 @@ db.username = username
 db.password = password
 ```
 - run the CreateTables.sql to setup the database
-- from maven do : "mvn tomcat7:run" (make sure port 8080 is empty)
+- from maven do : "mvn tomcat7:run" (make sure port 8080 is empty, a small guide for freeing 8080 is in /Auction)
 - website can be entered on http://localhost:8080/
 - after creating first account, give it admin by the following command: 
 ```
