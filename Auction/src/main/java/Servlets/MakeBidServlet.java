@@ -32,6 +32,7 @@ public class MakeBidServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+
         boolean userExists = SessionHelper.checkIfUserExists(session);
         User currentUser = (User)session.getAttribute(CURRENT_USER_STRING);
 
@@ -58,6 +59,15 @@ public class MakeBidServlet extends HttpServlet {
         Auction currentAuction = auctionDAO.getAuction(auctionId);
 
         int bidder = 0;
+
+        UserService userService = (UserService)servletContext.getAttribute(USER_SERVICE);
+        UserDAO userDAO = userService.getUserDAO();
+
+        List<User> topUsers = userDAO.getAllUsers();
+        request.setAttribute("users", topUsers);
+
+        List<Auction> auctions = auctionDAO.getAllAuctions();
+        request.setAttribute("auctions", auctions);
 
         if (currentUser != null){
             bidder = currentUser.getId();
