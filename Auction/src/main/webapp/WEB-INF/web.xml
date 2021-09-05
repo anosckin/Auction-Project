@@ -96,16 +96,6 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>AuctionBidServlet</servlet-name>
-    <servlet-class>Servlets.AuctionBidServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>AuctionBidServlet</servlet-name>
-    <url-pattern>/auction-bid</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
     <servlet-name>UserAuctionsServlet</servlet-name>
     <servlet-class>Servlets.UserAuctionsServlet</servlet-class>
   </servlet>
