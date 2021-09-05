@@ -13,7 +13,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     List<BidderAuction> bidderAuctions = (List<BidderAuction>)request.getAttribute("interested-auctions");
-    SqlAuctionDAO auctionDao = (SqlAuctionDAO) request.getAttribute("auctionDAO");
+    SqlAuctionDAO auctionDao = (SqlAuctionDAO) request.getAttribute("auctionsDAO");
     List<User> users = (List<User>)request.getAttribute("users");
 %>
 <html>
@@ -32,7 +32,12 @@
 <div class="main-div">
     <h1 class="h1">Active auctions you have bid on at least once:</h1>
     <br>
-
+    <span>
+        <%  String errorMessage = (String)request.getAttribute("message");
+            if (errorMessage != null) { %>
+        <span class="error-text"><%=errorMessage%></span><br>
+        <%  } %>
+    </span>
     <ol>
         <% for (BidderAuction bidderAuction : bidderAuctions) {
             Auction auction = auctionDao.getAuction(bidderAuction.getAuctionId());
@@ -70,6 +75,7 @@
                 <input class="input-empty-box" type="number" id="price" name="price">
                 <br>
                 <input type="hidden" id="auctionId" name="auctionId" value = <%= auction.getId() %> >
+                <input type="hidden" id="pageId" name="pageId" value = "interested-auctions.jsp" >
                 <input type="submit" value="Place Bid" />
             </form>
         </li>

@@ -53,8 +53,6 @@
         <br>
         <a class="h4-link" href="user-auctions">Auctions you have won</a>
         <br>
-        <a class="h4-link" href="auction-bid">Bid on an active auction</a>
-        <br>
         <a class="h4-link" href="logout">Logout</a>
         <br>
     </div>

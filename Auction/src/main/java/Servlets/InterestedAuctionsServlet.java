@@ -44,7 +44,7 @@ public class InterestedAuctionsServlet extends HttpServlet {
         request.setAttribute("interested-auctions", bidderAuctions);
 
         SqlAuctionDAO auctionDao = (SqlAuctionDAO)servletContext.getAttribute(SqlAuctionDAO.AUCTIONDAO_STR);
-        request.setAttribute("auctionDAO", auctionDao);
+        request.setAttribute("auctionsDAO", auctionDao);
 
         UserService userService = (UserService)servletContext.getAttribute(USER_SERVICE);
         UserDAO userDAO = userService.getUserDAO();

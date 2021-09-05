@@ -71,6 +71,7 @@
                         <input class="input-empty-box" type="number" id="price" name="price">
                         <br>
                         <input type="hidden" id="auctionId" name="auctionId" value = <%= auction.getId() %> >
+                        <input type="hidden" id="pageId" name="pageId" value = "active-auctions.jsp" >
                         <input type="submit" value="Place Bid" />
                     </form>
                 </li>
