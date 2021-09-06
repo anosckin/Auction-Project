@@ -41,8 +41,8 @@ public class UserAuctionsServlet  extends HttpServlet {
         UserService userService = (UserService)servletContext.getAttribute(USER_SERVICE);
         UserDAO userDAO = userService.getUserDAO();
 
-        List<User> topUsers = userDAO.getAllUsers();
-        request.setAttribute("users", topUsers);
+        List<User> allUsers = userDAO.getAllUsers();
+        request.setAttribute("users", allUsers);
 
         SqlAuctionDAO auctionDAO = (SqlAuctionDAO)servletContext.getAttribute(SqlAuctionDAO.AUCTIONDAO_STR);
 
