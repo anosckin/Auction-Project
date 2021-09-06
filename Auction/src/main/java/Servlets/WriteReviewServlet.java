@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.constraints.Null;
 import java.io.IOException;
 import java.util.List;
 
@@ -47,6 +46,11 @@ public class WriteReviewServlet extends HttpServlet {
         SqlAuctionDAO auctionDAO = (SqlAuctionDAO)servletContext.getAttribute(SqlAuctionDAO.AUCTIONDAO_STR);
         List<Auction> auctions = auctionDAO.getAllAuctions();
         request.setAttribute("auctions", auctions);
+
+        SqlReviewsDao reviewsDAO = (SqlReviewsDao)servletContext.getAttribute(SqlReviewsDao.ATTRIBUTE_NAME);
+        List<Review> reviews = reviewsDAO.getAllReviewsUser(currentUser.getId());
+
+        request.setAttribute("my-reviews", reviews);
 
         String star = request.getParameter("rate");
 

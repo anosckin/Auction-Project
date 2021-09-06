@@ -33,7 +33,7 @@ public interface ReviewsDAO {
     public List<Review> getAllReviewsDealer(int recipient_ID);
 
     /**
-     * Gets every review for dealer
+     * Gets every review for reviewer
      * @return list of reviews, empty list if there are no messages
      */
     public List<Review> getAllReviewsUser(int reviewer_ID);

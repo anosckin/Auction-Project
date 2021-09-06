@@ -1,10 +1,12 @@
 package Servlets;
 
 import DAO.SqlAuctionDAO;
+import DAO.SqlReviewsDao;
 import DAO.SqlUserDAO;
 import DAO.UserDAO;
 import Helper.SessionHelper;
 import Models.Auction;
+import Models.Review;
 import Models.User;
 import Services.UserService;
 
@@ -43,12 +45,16 @@ public class UserAuctionsServlet  extends HttpServlet {
         request.setAttribute("users", topUsers);
 
         SqlAuctionDAO auctionDAO = (SqlAuctionDAO)servletContext.getAttribute(SqlAuctionDAO.AUCTIONDAO_STR);
-        List<Auction> auctions = auctionDAO.getAllAuctions();
-        request.setAttribute("auctions", auctions);
 
         User currentUser = (User)session.getAttribute(CURRENT_USER_STRING);
-
         List<Auction> wonAuctions = auctionDAO.getWonAuctions(currentUser.getId());
+
+        request.setAttribute("won-auctions", wonAuctions);
+
+        SqlReviewsDao reviewsDAO = (SqlReviewsDao)servletContext.getAttribute(SqlReviewsDao.ATTRIBUTE_NAME);
+        List<Review> reviews = reviewsDAO.getAllReviewsUser(currentUser.getId());
+
+        request.setAttribute("my-reviews", reviews);
 
         userDAO.updateAuctionsWon(wonAuctions.size(),currentUser.getId());
         request.getRequestDispatcher("Pages/user-auctions.jsp").forward(request, response);
