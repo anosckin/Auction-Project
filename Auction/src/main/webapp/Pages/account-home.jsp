@@ -37,8 +37,6 @@
             <a class="h4-link" href="allusers">All Users</a>
             <br>
         <% } %>
-        <a class="h4-link" href="write-review">Write Review</a>
-        <br>
         <% if (currentUser.getIsDealer()){ %>
         <a class="h4-link" href="user-reviews">My Reviews</a>
         <br>

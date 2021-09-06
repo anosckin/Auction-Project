@@ -66,16 +66,6 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>WriteReviewServlet</servlet-name>
-    <servlet-class>Servlets.WriteReviewServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>WriteReviewServlet</servlet-name>
-    <url-pattern>/write-review</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
     <servlet-name>AddAuctionServlet</servlet-name>
     <servlet-class>Servlets.AddAuctionServlet</servlet-class>
   </servlet>
