@@ -44,8 +44,9 @@ public class WriteReviewServlet extends HttpServlet {
         request.setAttribute("users", users);
 
         SqlAuctionDAO auctionDAO = (SqlAuctionDAO)servletContext.getAttribute(SqlAuctionDAO.AUCTIONDAO_STR);
-        List<Auction> auctions = auctionDAO.getAllAuctions();
-        request.setAttribute("auctions", auctions);
+        List<Auction> wonAuctions = auctionDAO.getWonAuctions(currentUser.getId());
+
+        request.setAttribute("won-auctions", wonAuctions);
 
         SqlReviewsDao reviewsDAO = (SqlReviewsDao)servletContext.getAttribute(SqlReviewsDao.ATTRIBUTE_NAME);
         List<Review> reviews = reviewsDAO.getAllReviewsUser(currentUser.getId());
