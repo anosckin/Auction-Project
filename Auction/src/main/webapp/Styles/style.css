@@ -104,18 +104,13 @@ input[type="submit"] {
 	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-pack: justify;
-	-ms-flex-pack: justify;
-	justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
 }
 
 .error-text {
 	font-size: 20px;
 	color: #f63030;
-}
-
-ol {
-	columns: 2;
-	width: 70%;
 }
 
 .auction {
@@ -247,11 +242,11 @@ ol {
 	display: flex;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
-	-ms-flex-direction: column;
-	flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
 	-webkit-box-pack: justify;
-	-ms-flex-pack: justify;
-	justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
 }
 
 .list-a {
