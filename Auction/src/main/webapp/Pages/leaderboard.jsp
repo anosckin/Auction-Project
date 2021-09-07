@@ -28,10 +28,23 @@
         <br>
 
         <ol>
-            <% for (User user : topUsers) { %>
-                <li> <span class="label-2-blue"><%=user.getUsername()%>: </span> <span class="score-text"><%=user.getNumAuctionsWon()%></span> </li>
-                <br>
-            <% } %>
+            <table class="center" style = "font-size:  30px" border="1" style = "margin-top: 35px;">
+                <thead>
+                <tr>
+                    <th> Username </th>
+                    <th> Number of auctions won </th>
+                </tr>
+                </thead>
+                <tbody>
+                <%
+                    for (User user : topUsers){
+                        out.println("</td><td>"+user.getUsername() +
+                                "</td><td>"+user.getNumAuctionsWon() + "</td><tr>");
+                    }
+                %>
+                </tbody>
+            </table>
+
         </ol>
 
         <br>
