@@ -1,8 +1,6 @@
-
 body{
 	background: linear-gradient(to right, rgb(207, 189, 227), rgb(142, 144, 213));
 }
-
 
 .h1 {
 	font-size: 42px;
@@ -128,6 +126,19 @@ input[type="submit"] {
 	background: #e6dcea;
 }
 
+.review {
+	display: block;
+	width: 350px;
+	margin-right: 40px;
+	margin-bottom: 40px;
+	float: left;
+	padding: 3px;
+	border: 5px solid black;
+	border-width: 3px;
+	background: #e6dcea;
+}
+
+
 .input-1 {
 	width: 352px;
 	height: 60px;
@@ -162,6 +173,31 @@ input[type="submit"] {
 	vertical-align: center;
 	padding-left: 2px;
 	font-family: 'Poppins', sans-serif;
+}
+.input-single-digit {
+	width: 50px;
+	height: 24px;
+	font-size: 15px;
+	color: #737373;
+	background-color: #e6dcea;
+	border: 2px solid black;
+	vertical-align: center;
+	padding-left: 2px;
+	font-family: 'Poppins', sans-serif;
+	margin-bottom: 10px;
+}
+
+.input-item-description {
+	width: 320px;
+	height: 200px;
+	font-size: 15px;
+	color: #737373;
+	background-color: #e6dcea;
+	border: 2px solid black;
+	vertical-align: center;
+	padding-left: 2px;
+	font-family: 'Poppins', sans-serif;
+	margin-bottom: 5px;
 }
 
 .button-login {
@@ -292,3 +328,40 @@ input[type="submit"] {
 	column-gap: 10px;
 }
 
+
+/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+.rate {
+	float: left;
+	height: 46px;
+	padding: 0 10px;
+}
+.rate:not(:checked) > input {
+	position:absolute;
+	top:-9999px;
+}
+.rate:not(:checked) > label {
+	float:right;
+	width:1em;
+	overflow:hidden;
+	white-space:nowrap;
+	cursor:pointer;
+	font-size:30px;
+	color:#ccc;
+}
+.rate:not(:checked) > label:before {
+	content: '★ ';
+}
+.rate > input:checked ~ label {
+	color: #ffc700;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+	color: #deb217;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+	color: #c59b08;
+}

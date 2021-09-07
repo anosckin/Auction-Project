@@ -47,6 +47,9 @@ public class UserReviewsServlet  extends HttpServlet {
         List<Review> reviews = reviewsDAO.getAllReviews();
         request.setAttribute("reviews", reviews);
 
+        SqlAuctionDAO auctionDAO = (SqlAuctionDAO)servletContext.getAttribute(SqlAuctionDAO.AUCTIONDAO_STR);
+        request.setAttribute("auctionDAO", auctionDAO);
+
         request.getRequestDispatcher("Pages/user-reviews.jsp").forward(request, response);
     }
 
