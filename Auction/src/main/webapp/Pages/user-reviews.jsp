@@ -1,11 +1,8 @@
-import DAO.SqlAuctionDAO;
-import Models.Review;
-import Models.User;
-
-import java.util.List;
-
-import static GeneralConstants.CURRENT_USER_STRING;
 <%@ page import="static Helper.GeneralConstants.*" %>
+<%@ page import="Models.Review" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Models.User" %>
+<%@ page import="DAO.SqlAuctionDAO" %>
 <%--
   Created by IntelliJ IDEA.
   User: samad
