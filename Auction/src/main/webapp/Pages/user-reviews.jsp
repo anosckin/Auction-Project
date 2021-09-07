@@ -1,9 +1,12 @@
-<%@ page import="Models.User" %>
-<%@ page import="java.util.List" %>
-<%@ page import="Models.Auction" %>
+import DAO.SqlAuctionDAO;
+import Models.Review;
+import Models.User;
+
+import java.util.List;
+
+import static GeneralConstants.CURRENT_USER_STRING;
 <%@ page import="static Helper.GeneralConstants.*" %>
-<%@ page import="Models.Review" %>
-<%@ page import="DAO.SqlAuctionDAO" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: samad
   Date: 14.08.2021

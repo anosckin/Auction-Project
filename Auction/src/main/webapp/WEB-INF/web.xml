@@ -125,6 +125,16 @@
     <url-pattern>/interested-auctions</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>MyAuctionServlet</servlet-name>
+    <servlet-class>Servlets.MyAuctionServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>MyAuctionServlet</servlet-name>
+    <url-pattern>/my-auctions</url-pattern>
+  </servlet-mapping>
+
   <listener>
     <listener-class>Listeners.ContextListener</listener-class>
   </listener>

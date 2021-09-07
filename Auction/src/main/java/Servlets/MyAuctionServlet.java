@@ -1,16 +1,16 @@
 package Servlets;
 
 import DAO.SqlAuctionDAO;
-import DAO.SqlReviewsDao;
 import DAO.UserDAO;
 import Helper.SessionHelper;
 import Models.Auction;
-import Models.Review;
 import Models.User;
+import Models.UserInfo;
 import Services.UserService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,13 +18,13 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-import static Helper.GeneralConstants.CURRENT_USER_STRING;
-import static Helper.GeneralConstants.USER_SERVICE;
-
-public class UserReviewsServlet  extends HttpServlet {
+import static Helper.GeneralConstants.*;
 
 
-    public UserReviewsServlet(){ super(); }
+public class MyAuctionServlet  extends HttpServlet {
+
+
+    public MyAuctionServlet(){ super(); }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,14 +43,13 @@ public class UserReviewsServlet  extends HttpServlet {
         List<User> allUsers = userDAO.getAllUsers();
         request.setAttribute("users", allUsers);
 
-        SqlReviewsDao reviewsDAO = (SqlReviewsDao)servletContext.getAttribute(SqlReviewsDao.ATTRIBUTE_NAME);
-        List<Review> reviews = reviewsDAO.getAllReviews();
-        request.setAttribute("reviews", reviews);
-
         SqlAuctionDAO auctionDAO = (SqlAuctionDAO)servletContext.getAttribute(SqlAuctionDAO.AUCTIONDAO_STR);
-        request.setAttribute("auctionDAO", auctionDAO);
+        List<Auction> auctions = auctionDAO.getAllAuctions();
+        request.setAttribute("auctions", auctions);
 
-        request.getRequestDispatcher("Pages/user-reviews.jsp").forward(request, response);
+
+
+        request.getRequestDispatcher("Pages/my-auctions.jsp").forward(request, response);
     }
 
 }

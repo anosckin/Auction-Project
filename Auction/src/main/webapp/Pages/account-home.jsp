@@ -42,8 +42,8 @@
         <br>
         <% } %>
         <% if (currentUser.getIsDealer()){ %>
-            <a class="h4-link" href="add-auction">Add auction</a>
-            <br>
+            <a class="h4-link" href="my-auctions">My Auctions</a> <br>
+            <a class="h4-link" href="add-auction">Add auction</a> <br>
         <% } %>
         <a class="h4-link" href="active-auctions">Active auctions</a>
         <br>
