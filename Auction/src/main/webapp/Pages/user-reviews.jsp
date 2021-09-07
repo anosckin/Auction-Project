@@ -2,7 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="Models.Auction" %>
 <%@ page import="static Helper.GeneralConstants.*" %>
-<%@ page import="Models.Review" %><%--
+<%@ page import="Models.Review" %>
+<%@ page import="DAO.SqlAuctionDAO" %><%--
   Created by IntelliJ IDEA.
   User: samad
   Date: 14.08.2021
@@ -11,9 +12,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    List<Review> reviews = (List<Review>)request.getAttribute("reviews");
-    List<User> users = (List<User>)request.getAttribute("users");
-    User currentUser = (User)session.getAttribute(CURRENT_USER_STRING);
+    List<Review> reviews = (List<Review>) request.getAttribute("reviews");
+    List<User> users = (List<User>) request.getAttribute("users");
+    SqlAuctionDAO auctionDAO = (SqlAuctionDAO) request.getAttribute("auctionDAO");
+    User currentUser = (User) session.getAttribute(CURRENT_USER_STRING);
 %>
 <html>
 <head>
@@ -34,16 +36,17 @@
 
     <ol>
         <% for (Review review : reviews) {
-            if (review.getRecipientId()==currentUser.getId()){ %>
-        <li>
+            if (review.getRecipientId() == currentUser.getId()) { %>
+        <li class="review">
+            <span class="label-2-black" style = "font-size: 23px; font-weight: bold"> Item: <%=auctionDAO.getAuction(review.getItemId()).getItem_name()%> </span><br>
+            <span class="label-2-black" style = "font-size: 18px; font-weight: bold">Sold for <%=auctionDAO.getAuction(review.getItemId()).getCurrent_price()%>$ </span> <br>
             <% for (User reviwer : users) {
-                if (reviwer.getId()==review.getReviewerId()){ %>
-                    <span class="label-1">Reviewer : <%=reviwer.getUsername()%> </span> <br>
-                <% } %>
+                if (reviwer.getId() == review.getReviewerId()) { %>
+            <span class="label-2-black">Reviewer : <%=reviwer.getUsername()%> </span> <br>
             <% } %>
-            <span class="label-2-blue"> Score (out of 5): <%=review.getScore()%> </span> <br>
-            <span class="label-2-blue"> Review: <%=review.getReview()%> </span> <br>
-            --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            <% } %>
+            <span class="label-2-black"> Score : <%=review.getScore()%>/5 </span> <br>
+            <span class="label-2-black"> Review: <%=review.getReview()%> </span> <br>
             <br>
         </li>
         <% } %>
@@ -51,7 +54,6 @@
     </ol>
 
     <br>
-    <a class="h4-link" href="account-home">Back</a>
 </div>
 
 </body>
