@@ -21,7 +21,6 @@
     <body>
         <div class="main-div">
             <h2 class="profile-name"><%=currentUser.getUsername()%>'s Profile</h2>
-
             <div>
                 <ul class="list-a">
                     <li>
@@ -45,6 +44,11 @@
                     <li>
                         <span class="label-1">Note: </span> <span class="label-2"><%=currentUserInfo.getNote()%></span>
                     </li>
+                    <% if (currentUser.getIsDealer()){%>
+                        <li>
+                            <span class="label-1">Score: <%=currentUser.getRating()%>/5</span>
+                        </li>
+                    <% } %>
                 </ul>
             </div>
 
